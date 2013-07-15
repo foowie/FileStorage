@@ -26,7 +26,7 @@ class CreateUploadedFileHandler extends \Nette\Object implements \Messaging\IHan
 	 * @param \FileStorage\CreateUploadedFileCommand $message
 	 */
 	public function handle($message) {
-		$command = new PrepareFileEntityCommand($message->getUpload()->getName(), $message->getUpload()->getContentType(), $message->getUpload()->getSize(), false);
+		$command = new PrepareFileEntityCommand($message->getUpload()->getName(), $message->getUpload()->getContentType(), $message->getUpload()->getSize(), $message->getGenerateComplexFileName());
 		$fileEntityId = $this->bus->send($command);
 
 		$fileEntity = $this->repository->find($fileEntityId);

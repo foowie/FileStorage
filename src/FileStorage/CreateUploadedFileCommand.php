@@ -9,9 +9,11 @@ class CreateUploadedFileCommand extends \Nette\Object implements \Messaging\ICom
 
 	/** @var \Nette\Http\FileUpload */
 	protected $upload;
+	protected $generateComplexFileName;
 
-	function __construct(\Nette\Http\FileUpload $upload) {
+	function __construct(\Nette\Http\FileUpload $upload, $generateComplexFileName = false) {
 		$this->upload = $upload;
+		$this->generateComplexFileName = $generateComplexFileName;
 	}
 
 	/**
@@ -19,6 +21,10 @@ class CreateUploadedFileCommand extends \Nette\Object implements \Messaging\ICom
 	 */
 	public function getUpload() {
 		return $this->upload;
+	}
+
+	public function getGenerateComplexFileName() {
+		return $this->generateComplexFileName;
 	}
 
 }
