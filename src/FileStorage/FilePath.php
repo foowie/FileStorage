@@ -17,6 +17,10 @@ class FilePath extends \Nette\Object {
 			throw new \Nette\InvalidStateException("Invalid base path '$basePath'!");
 	}
 
+	public function getRelativePath(\Nette\Database\Table\ActiveRow $file) {
+		return $file->directory . '/' . $file->name;
+	}
+
 	public function getUrl(\Nette\Database\Table\ActiveRow $file) {
 		return $this->baseUrl . $file->directory . '/' . $file->name;
 	}

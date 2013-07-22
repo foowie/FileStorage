@@ -11,6 +11,7 @@ class FileMacros extends \Nette\Latte\Macros\MacroSet {
 		$me = new static($compiler);
 		$me->addMacro('fileUrl', array('FileStorage\FileMacros', 'macroFileUrl'));
 		$me->addMacro('filePath', array('FileStorage\FileMacros', 'macroFilePath'));
+		$me->addMacro('fileRelativePath', array('FileStorage\FileMacros', 'macroFileRelativePath'));
 	}
 
 	public static function macroFileUrl(\Nette\Latte\MacroNode $node, \Nette\Latte\PhpWriter $writer) {
@@ -19,6 +20,10 @@ class FileMacros extends \Nette\Latte\Macros\MacroSet {
 
 	public static function macroFilePath(\Nette\Latte\MacroNode $node, \Nette\Latte\PhpWriter $writer) {
 		return $writer->write('echo($presenter->context->getByType(\'FileStorage\FilePath\')->getPath(%node.word));');
+	}
+
+	public static function macroFileRelativePath(\Nette\Latte\MacroNode $node, \Nette\Latte\PhpWriter $writer) {
+		return $writer->write('echo($presenter->context->getByType(\'FileStorage\FilePath\')->getRelativePath(%node.word));');
 	}
 
 }
