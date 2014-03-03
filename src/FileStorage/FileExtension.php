@@ -25,8 +25,10 @@ class FileExtension extends \Nette\Config\CompilerExtension {
 		$builder->addDefinition($this->prefix('filePath'))->setClass('FileStorage\FilePath', array($this->getContainerBuilder()->parameters['wwwDir'] . '/' . $config['path'], '/'.trim($config['path'], '/').'/'));
 		$builder->addDefinition($this->prefix('fileStorageHelper'))->setClass('FileStorage\FileStorageHelper');
 
+		$builder->addDefinition($this->prefix('createFileValidator'))->setClass('FileStorage\CreateFileValidator')->addTag($config['validatorTag']);
 		$builder->addDefinition($this->prefix('createUploadedFileValidator'))->setClass('FileStorage\CreateUploadedFileValidator')->addTag($config['validatorTag']);
 
+		$builder->addDefinition($this->prefix('createFileHandler'))->setClass('FileStorage\CreateFileHandler')->addTag($config['handlerTag']);
 		$builder->addDefinition($this->prefix('createUploadedFileHandler'))->setClass('FileStorage\CreateUploadedFileHandler')->addTag($config['handlerTag']);
 		$builder->addDefinition($this->prefix('prepareFileEntityHandler'))->setClass('FileStorage\PrepareFileEntityHandler')->addTag($config['handlerTag']);
 		$builder->addDefinition($this->prefix('deleteFileHandler'))->setClass('FileStorage\DeleteFileHandler')->addTag($config['handlerTag']);
